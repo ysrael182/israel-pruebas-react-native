@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-export class ItemUserComponent extends Component {
+export class ItemToDoComponent extends Component {
     static propTypes = {
         users: PropTypes.array.isRequired
     };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { ItemUserComponent } from '../components/ItemUserComponent';
+import { ItemToDoComponent } from '../components/ItemToDoComponent';
 import { db } from '../config';
 
 export default class ListItem extends Component {
@@ -18,7 +18,7 @@ export default class ListItem extends Component {
     renderToDoS() {
         if(this.state.toDoS.length > 0) {
             return (
-                <ItemUserComponent items = {this.state.toDoS} />
+                <ItemToDoComponent items = {this.state.toDoS} />
             );
         }
         return <Text>No To Do's.</Text>;

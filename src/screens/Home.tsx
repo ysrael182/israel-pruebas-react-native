@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Button, View, Text } from 'react-native';
-import { ItemUserComponent } from '../components/ItemUserComponent';
+import { ItemToDoComponent } from '../components/ItemToDoComponent';
+import{ ToDoModal } from '../components/ToDoModal';
 import { db } from '../config';
 export default class Home extends Component {
     state = {
-        toDoS: []     
+        toDoS: [],
+        isModalvisible: false    
      };
      componentDidMount() {
          
@@ -17,7 +19,7 @@ export default class Home extends Component {
     renderToDoS() {
         if(this.state.toDoS.length > 0) {
             return (
-                <ItemUserComponent items = {this.state.toDoS} />
+                <ItemToDoComponent items = {this.state.toDoS} />
             );
         }
         return <Text>No To Do's.</Text>;
@@ -29,10 +31,13 @@ export default class Home extends Component {
                     { this.renderToDoS() }
                 </View>
                 <Button
-                    title="Add To Do"
-                    onPress={() => this.props.navigation.navigate('AddItem')}
+                    title="Add To Do With Navigation"
+                    onPress={() => this.props.navigation.navigate('AddToDo')}
                 />
-                
+                <Button 
+                    title="Add to Do with Modal"
+                    onPress={() => this.setState({isModalvisible: true})}
+                />
             </View>
         );
     }

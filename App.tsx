@@ -15,7 +15,7 @@ import {
   StyleSheet
 } from 'react-native';
 import Home from './src/screens/Home';
-import AddItem from './src/screens/AddItem';
+import AddToDo from './src/screens/AddToDo';
 import ListItem from './src/screens/ListItem';
 
 declare var global: {HermesInternal: null | {}};
@@ -25,7 +25,7 @@ const AppNavigator = createStackNavigator(
       screen: Home,
       navigationOptions: ({ navigation }) => ({ header: <Text>To Dos List</Text> }) 
     }, 
-    AddItem,
+    AddToDo,
     ListItem
   }, 
   {
