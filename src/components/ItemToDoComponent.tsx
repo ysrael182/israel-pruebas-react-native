@@ -2,8 +2,9 @@
  * @author Israel Yasis
  */
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
+import { styleComponent } from '../components/Styles';
 
 export class ItemToDoComponent extends Component {
     static propTypes = {
@@ -14,7 +15,7 @@ export class ItemToDoComponent extends Component {
             <View>
                 { this.props.items.map((item, index) => {
                     return (
-                        <View key={index}>
+                        <View key={index} style={styleComponent.container}>
                               <Text>{item.name}</Text>  
                         </View>
                     );
