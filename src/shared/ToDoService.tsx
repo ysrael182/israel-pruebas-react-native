@@ -1,21 +1,31 @@
 import { db } from '../config';
 
 class ToDo {
-    id: string|null = "";
+    id: string = "";
     name: string = "";
 }
 class ToDoService {
-
-    static async getToDoList(): Promise<Array<ToDo>> {
-        let toDoArray = Array<ToDo>();
+    /**
+     * @api
+     * */    
+    static getList = new Promise<Array<ToDo>>((resolve, reject) => {
         db.ref('/chores').on('value', snapshot => {
-            console.log(snapshot);
+            let toDoArray = Array<ToDo>();
             snapshot.forEach((toDo) => {
-                 toDoArray.push({id: toDo.key, name: toDo.val().name})
+                if(toDo.key !== null) {
+                    toDoArray.push({id: toDo.key, name: toDo.val().name})
+                }
             });
-         });
-         console.log(toDoArray);
-        return toDoArray; 
+            resolve(toDoArray);
+        });
+    });
+    /**
+     * @api
+     * @param string toDoId 
+     */
+    static delete(toDoId: string): Promise<any> { 
+        const toDoRef = db.ref('/chores').child(toDoId);
+        return toDoRef.remove();
     }
 }
 export {

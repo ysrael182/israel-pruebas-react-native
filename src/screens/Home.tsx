@@ -2,20 +2,15 @@ import React, { Component } from 'react';
 import { Button, View, Text } from 'react-native';
 import { ItemToDoComponent } from '../components/ItemToDoComponent';
 import{ ToDoModal } from '../components/ToDoModal';
-import { db } from '../config';
-import { ToDo, ToDoService } from '../shared/ToDoService';
+import { ToDoService } from '../shared/ToDoService';
 export default class Home extends Component {
     state = {
         toDoS: [],
         isModalvisible: false    
      };
     componentDidMount() {
-         db.ref('/chores').on('value', snapshot => {
-            let toDoArray = Array<ToDo>();
-             snapshot.forEach((toDo) => {
-                 toDoArray.push({name: toDo.val().name, id: toDo.key})
-             });
-             this.setState({toDoS: toDoArray});
+         ToDoService.getList.then(response => {
+             this.setState({toDoS: response});
          });
      }
     renderToDoS() {

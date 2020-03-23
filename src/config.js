@@ -1,5 +1,6 @@
-import Firebase from 'firebase';
 
+import Firebase from 'firebase';
+const settings = {timestampsInSnapshots: true};
 let firebaseConfig = {
     apiKey: 'AIzaSyDSp3Z3tbkUuDPqCNp8fDoAHmVXMYMQT4g',
     authDomain: 'test-9b07b.firebaseapp.com',
