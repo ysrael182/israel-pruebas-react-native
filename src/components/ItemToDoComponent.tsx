@@ -2,9 +2,10 @@
  * @author Israel Yasis
  */
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, CheckBox } from 'react-native';
 import PropTypes from 'prop-types';
-import { styleComponent } from '../components/Styles';
+import { styleComponent } from '../components/StyleComponent';
+import { ToDo } from 'src/shared/ToDoService';
 
 export class ItemToDoComponent extends Component {
     static propTypes = {
@@ -13,10 +14,11 @@ export class ItemToDoComponent extends Component {
     render() {
         return (
             <View>
-                { this.props.items.map((item, index) => {
+                { this.props.items.map((item: ToDo) => {
                     return (
-                        <View key={index} style={styleComponent.container}>
-                              <Text>{item.name}</Text>  
+                        <View style={styleComponent.container}>
+                              <CheckBox title="Delete To Do" />
+                              <Text style={styleComponent.text}>{item.name}</Text>  
                         </View>
                     );
                 })}
