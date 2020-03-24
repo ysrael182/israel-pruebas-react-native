@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Button, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { ItemToDoComponent } from '../components/ItemToDoComponent';
+import { styleHome } from '../screens/styleHome';
 import{ ToDoModal } from '../components/ToDoModal';
 import { ToDoService } from '../shared/ToDoService';
+import Icon from 'react-native-vector-icons/Ionicons';
 export default class Home extends Component {
     state = {
         toDoS: [],
@@ -23,19 +25,23 @@ export default class Home extends Component {
     }
     render() {
         return (
-            <View>
-                <View>
+            <View style={styleHome.container}>
+                <View style={styleHome.listToDo}>
                     { this.renderToDoS() }
                 </View>
-                <Button
-                    title="Add To Do With Navigation"
-                    onPress={() => this.props.navigation.navigate('AddToDo')}
-                />
-                <Button 
-                    title="Add to Do with Modal"
-                    onPress={() => this.setState({isModalvisible: true})}
-                />
+                <Icon style={styleHome.iconAddToDo}
+                        size={70} 
+                        name="ios-add-circle"
+                        onPress={() => this.props.navigation.navigate('AddToDo')}
+                    />
             </View>
         );
     }
+    /**
+     * <!--
+                <Icon.Button 
+                    title="Add to Do with Modal"
+                    onPress={() => this.setState({isModalvisible: true})}
+                />-->
+     */
 }

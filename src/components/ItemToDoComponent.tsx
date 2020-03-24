@@ -7,7 +7,7 @@ import CheckBox  from '@react-native-community/checkbox';
 import PropTypes from 'prop-types';
 import { styleToDo } from '../components/styleToDo';
 import { ToDo, ToDoService } from '../shared/ToDoService';
-
+import Icon from 'react-native-vector-icons/AntDesign';
 export class ItemToDoComponent extends Component {
     static propTypes = {
         items: PropTypes.array.isRequired
@@ -26,7 +26,7 @@ export class ItemToDoComponent extends Component {
             this.props.items = this.props.items.filter((item: ToDo) => {
                 return item.id !== toDo.id;
             });
-            this.refreshListToDoS;
+            this.refreshListToDoS();
         });
     }
     refreshListToDoS = () => {
@@ -34,15 +34,21 @@ export class ItemToDoComponent extends Component {
     };
     render() {
         return (
-            <View>
+            <View style={styleToDo.container}>
                 { this.state.chores.map((item: ToDo) => {
                     return (
-                        <View style={styleToDo.container} key={item.id}>
-                              <CheckBox 
+                        <View style={styleToDo.list} key={item.id}>
+                              <CheckBox  
+                                    style={styleToDo.checkBox}
                                     onValueChange = {() => this.doneToDo(item)}
                                     value = {item.done}
                               />
-                              <Text style={[styleToDo.text, item.done ? styleToDo.textDone : null]}>{item.name}</Text>  
+                              <Text style={[styleToDo.text, item.done ? styleToDo.textDone : null]}>{item.name}</Text>
+                              <Icon 
+                                    style = {styleToDo.iconDelete}
+                                    size={24} 
+                                    name="delete"
+                               />            
                         </View>
                     );
                 })}
