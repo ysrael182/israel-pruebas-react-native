@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
-import { db } from '../config';
-let addItem = item => {
-    db.ref("/chores").push({
-        name: item
-    })
-};
+import {ToDo, ToDoService} from '../shared/ToDoService';
 export default class AddToDo extends Component {
     
     state = {
-        name: ""
+        name: "",
+        done: false
     };
     
     handleSubmit = () => {
-        addItem(this.state.name);
-        this.props.navigation.navigate('Home');
+        let newTodo = new ToDo(this.state.name, false);
+        ToDoService.save(newTodo).then(() => {
+            this.props.navigation.navigate('Home');
+        });
     };
     render() {
         
          return (
             <View>
-                <Text>Add Item</Text>
+                <Text>Add new Chore</Text>
                 <TextInput onChangeText={name => this.setState({name})} />
                 <Button onPress={this.handleSubmit}
                         title= "Add To Do"/>

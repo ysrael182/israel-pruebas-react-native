@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import Home from './src/screens/Home';
 import AddToDo from './src/screens/AddToDo';
-import ListItem from './src/screens/ListItem';
+import ListToDo from './src/screens/ListToDo';
 
 declare var global: {HermesInternal: null | {}};
 const AppNavigator = createStackNavigator(
@@ -26,7 +26,7 @@ const AppNavigator = createStackNavigator(
       navigationOptions: ({ navigation }) => ({ header: <Text>To Dos List</Text> }) 
     }, 
     AddToDo,
-    ListItem
+    ListToDo
   }, 
   {
       initialRouteName: 'Home'

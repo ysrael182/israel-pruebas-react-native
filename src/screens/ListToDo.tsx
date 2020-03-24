@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { ItemToDoComponent } from '../components/ItemToDoComponent';
 import { db } from '../config';
 
-export default class ListItem extends Component {
+export default class ListToDo extends Component {
     state = {
        toDoS: []     
     };
